@@ -1,0 +1,26 @@
+-- Use table format by default, but switch to expanded table format when there's
+-- a lot of data, which makes it much easier to read.
+\x auto
+
+-- To have all queries display query times.
+\timing
+
+-- Verbose error reports.
+\set VERBOSITY verbose
+
+\set COMP_KEYWORD_CASE upper
+
+-- string, or is it null? This makes that distinction visible.
+\pset null '(null)'
+
+-- Use a separate history file per-database.
+\set HISTFILE ~/.psql_history/ :DBNAME
+
+-- Set client encoding to UTF8 (to match what is on the server)
+\encoding UTF8
+
+-- Within columns, wrap long lines so that select results still fit on the display.
+\pset format wrapped
+
+-- Show pretty lines around the outside of select results.
+\pset border 2

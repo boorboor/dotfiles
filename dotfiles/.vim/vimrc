@@ -1,0 +1,54 @@
+" vimrc file
+" Maintainer    Massoud Boorboor <boorboor@gmail.com>
+" Last Change   2018-10-10 Wed 08:10 AM
+
+set number " Show line numbers in side bar for better navigation.
+set showcmd " Show partial commands in the last line of the screen.
+set wildmenu " Display command line’s tab complete options as a menu.
+set autoindent " Copy the indentation from the previous line.
+set pastetoggle=<F2>
+
+set nocompatible " Set no vi compatible to active some more vim features.
+
+set autoread " Automatically re-read files if modified outside Vim.
+set confirm " Display a confirmation dialog when closing an unsaved file.
+
+set termguicolors    " Enable true colors for more colors.
+set background=dark " Use colors that suit a dark background.
+colorscheme NeoSolarized
+
+set showmatch " Highlight pair parenthesis.
+syntax enable
+filetype plugin indent on
+map <leader>sp :setlocal spell! spelllang=en_us<CR>
+
+" Disable error bell by setting visual bell config to null.
+set visualbell
+set t_vb=
+
+" Notice diffrent tab key options in ftplugin files are set.
+set expandtab " Insert 'softtabstop' amount of space characters.
+set softtabstop=4 " Sets tab key width.
+set shiftwidth=4 " Affects what happens when you press >>, << or ==.
+
+set incsearch " Incremental search that shows partial matches.
+set hlsearch " Enable search highlighting.
+set smartcase " Case-sensitive when search query contains an uppercase letter.
+
+ " cancel a search with //.
+noremap <silent> // :noh<CR><Esc>
+
+" Notice diffrent line wraping options in ftplugin files are set.
+set wrap  " Enable line wrapping.
+set linebreak " Avoid wrapping a line in the middle of a word.
+set textwidth=119 " set max line width to 119(github page) for easy review.
+set colorcolumn=80 " Add a colored column to avoid going to far to the right.
+highlight ColorColumn ctermbg=4
+highlight SpellBad cterm=underline " Underline missspelled words.
+
+set viminfo+=n~/.vim/viminfo " Puts .viminfo file into .vim/ Dir.
+set directory+=n~/.cache/vim " Directory to store swap files.
+
+" print timestamp
+nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
+imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
