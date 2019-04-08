@@ -60,6 +60,9 @@ install(){
             ||apt install -qq ${app} -y \
             &&echo "${app} already is installed."
     done
+
+    echo "Installing pyenv"
+    curl https://pyenv.run | bash
 }
 
 help(){
