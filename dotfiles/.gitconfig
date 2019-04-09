@@ -8,3 +8,5 @@
     s = status -s
     d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
+[core]
+	excludesfile = /home/dev/.gitignore_global
