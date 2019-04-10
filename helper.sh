@@ -7,6 +7,7 @@ APPS=(
     'nmap'
     'tmux'
     'vim'
+    'jq'
     'make'
     'build-essential'
     'libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
