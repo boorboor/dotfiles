@@ -8,6 +8,7 @@ APPS=(
     'tmux'
     'vim'
     'jq'
+    'tree'
     'make'
     'build-essential'
     'libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
