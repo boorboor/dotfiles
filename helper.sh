@@ -64,6 +64,14 @@ install(){
 
     echo "Installing pyenv"
     curl https://pyenv.run | bash
+    echo "Installing docker-compose"
+    sudo curl -L \
+        --url "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" \
+        --output /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo curl -L \
+        --url https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/completion/bash/docker-compose \
+        --output /etc/bash_completion.d/docker-compose
 }
 
 help(){
