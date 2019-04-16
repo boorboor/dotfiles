@@ -8,6 +8,7 @@ APPS=(
     'tmux'
     'vim'
     'jq'
+    'autopep8'
     'tree'
     'make'
     'build-essential'
