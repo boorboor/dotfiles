@@ -88,6 +88,12 @@ help(){
     echo ""
 }
 
+# If ran with sudo
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 trap '' 0 1 2 3 6 14 15
 
 if [[ $# == 0 ]]; then
