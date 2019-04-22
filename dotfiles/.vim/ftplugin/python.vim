@@ -24,5 +24,5 @@ setlocal wildignore=*.pyc
 
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>
 map <leader>p ofrom pprint import pprint; pprint() # DEBUG<ESC>T(i
-map <leader>f :w<CR>:!autopep8 --in-place --aggressive --aggressive %<ESC>
+map <leader>f :update<CR>:!isort %<CR>:!autopep8 --in-place --aggressive --aggressive %<CR>
 nnoremap <buffer> <F5> :update<bar>!python3 %<CR>
