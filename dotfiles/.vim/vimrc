@@ -42,8 +42,6 @@ noremap <silent> // :noh<CR><Esc>
 set wrap  " Enable line wrapping.
 set linebreak " Avoid wrapping a line in the middle of a word.
 set textwidth=119 " set max line width to 119(github page) for easy review.
-set colorcolumn=80 " Add a colored column to avoid going to far to the right.
-highlight ColorColumn ctermbg=4
 highlight SpellBad cterm=underline " Underline missspelled words.
 
 set viminfo+=n~/.vim/viminfo " Puts .viminfo file into .vim/ Dir.
