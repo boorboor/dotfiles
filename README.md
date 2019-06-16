@@ -1,2 +1,2 @@
 # dotfiles
-my configuration files and a helper script for making linux home fast.
+My linux dotfiles and a helper script for making the linux home.
