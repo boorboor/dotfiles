@@ -64,10 +64,10 @@ function parse_git_dirty {
 
 export PS1="\[\033[38;5;36m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] \j\[\033[00m\]ᨏ ♚ ♪๛ $ "
 
-export GOPATH=$HOME/Code/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# export GOPATH=$HOME/Code/go
+# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # pyenv
-export PATH="/home/dev/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="/home/dev/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"

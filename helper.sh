@@ -2,19 +2,12 @@
 
 # List of apps to install by --install option.
 APPS=(
-    'git-all'
-    'curl'
+    'git-all' 'curl' 'jq'
     'nmap'
-    'tmux'
-    'vim'
-    'jq'
-    'autopep8'
-    'isort'
+    'tmux' 'vim'
+    'autopep8' 'isort' 'pylint'
     'tree'
-    'gcc'
-    'g++'
-    'make'
-    'build-essential'
+    'gcc' 'g++' 'make' 'build-essential'
     'libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
      llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
      liblzma-dev python-openssl'
@@ -40,7 +33,7 @@ link(){
         if [ -f ~/${file} ]; then
             mv ~/${file} ~/${file}.old
         fi
-        ln -sf $(pwd)/dotfiles/${file} ~/${file} \
+        ln -s $(pwd)/dotfiles/${file} ~/${file} \
             &&echo "${file} file linked" \
             || echo "${file} fail to link."
     done
