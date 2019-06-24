@@ -5,7 +5,7 @@ APPS=(
     'git-all' 'curl' 'jq'
     'nmap'
     'tmux' 'vim'
-    'autopep8' 'isort' 'pylint'
+    'python-autopep8' 'isort' 'pylint'
     'tree'
     'gcc' 'g++' 'make' 'build-essential'
     'libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
