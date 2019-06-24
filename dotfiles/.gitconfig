@@ -1,5 +1,5 @@
 [user]
-    name = Massoud boorboor
+    name = Massoud Boorboor
     email = boorboor@gmail.com
 [push]
     default = simple
@@ -10,3 +10,7 @@
 
 [core]
 	excludesfile = /home/dev/.gitignore_global
+[color]
+	ui = auto
+[http]
+	proxy = socks5://localhost:8123
