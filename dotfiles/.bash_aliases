@@ -8,12 +8,12 @@ alias copy='xclip -selection c'
 alias myip1='curl icanhazip.com'
 alias myip2='curl ifconfig.me'
 alias myip3='curl ipecho.net/plain'
-alias TODO='grep -rn TODO'
+alias TODO='grep -rin TODO'
 alias note='vim ~/Documents/note.txt'
-alias ports='netstat -tul4np'
-alias vpn='sudo /etc/init.d/kerio-kvc'
+alias ports='ss -tul4np'
 alias p8='ping 8.8.8.8 -c 3'
 alias m8='mtr 8.8.8.8'
+alias pyserv='sudo python3 -m http.server 80'
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -62,7 +62,8 @@ function parse_git_dirty {
 	fi
 }
 
-export PS1="\[\033[38;5;36m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] \j\[\033[00m\]ᨏ ♚ ♪๛ $ "
+export PS1="\[\033[38;5;36m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] \j\[\033[00m\]$ "
+# ᨏ ♚ ♪๛
 
 # export GOPATH=$HOME/Code/go
 # export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
