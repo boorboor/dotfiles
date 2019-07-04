@@ -15,6 +15,10 @@ alias p8='ping 8.8.8.8 -c 3'
 alias m8='mtr 8.8.8.8'
 alias pyserv='sudo python3 -m http.server 80'
 
+function ws(){
+    cd ~/Codes/$1
+}
+
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`

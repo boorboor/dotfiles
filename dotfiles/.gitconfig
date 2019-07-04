@@ -14,4 +14,4 @@
 [color]
 	ui = auto
 [http]
-	proxy = socks5://localhost:8123
+[diff]
