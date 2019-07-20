@@ -5,7 +5,7 @@
     default = simple
 [alias]
     l = log --pretty=oneline -n 20 --graph --abbrev-commit
-    s = status -s
+    s = status --short
     d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 [core]

@@ -22,6 +22,10 @@ setlocal encoding=utf-8 " Use an encoding that supports Unicode.
 setlocal fileformat=unix
 setlocal wildignore=*.pyc
 
+compiler pylint
+let g:pylint_onwrite = 0
+let g:pylint_cwindow = 0
+
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>
 map <leader>p ofrom pprint import pprint; pprint() # DEBUG<ESC>T(i
 map <leader>f :update<CR>:!isort %<CR>:!autopep8 --in-place --aggressive --aggressive %<CR>

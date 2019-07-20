@@ -2,18 +2,24 @@
 
 # List of apps to install by --install option.
 APPS=(
-    'git-all' 'curl' 'jq'
+    'git-all'
+    'curl'
+    'jq'
     'nmap'
-    'tmux' 'vim'
-    'python-autopep8' 'isort' 'pylint'
+    'tmux'
+    'vim'
+    'python-autopep8'
+    'isort'
+    'pylint'
     'tree'
+    'pass'
     'gcc' 'g++' 'make' 'build-essential'
     'libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
      llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
      liblzma-dev python-openssl'
-    # 'ipcalc'
-    # 'xclip'
-    # 'axel'
+    'ipcalc'
+    'xclip'
+    'axel'
 )
 
 # List of dotfiles in repo to replace by --link option.

@@ -14,6 +14,7 @@ alias ports='ss -tul4np'
 alias p8='ping 8.8.8.8 -c 3'
 alias m8='mtr 8.8.8.8'
 alias pyserv='sudo python3 -m http.server 80'
+alias khamosh='shutdown now'
 
 function ws(){
     cd ~/Codes/$1
@@ -68,6 +69,7 @@ function parse_git_dirty {
 
 export PS1="\[\033[38;5;36m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] \j\[\033[00m\]$ "
 # ᨏ ♚ ♪๛
+export EDITOR=/usr/bin/vim
 
 # export GOPATH=$HOME/Code/go
 # export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
