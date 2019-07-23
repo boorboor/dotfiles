@@ -4,7 +4,11 @@
 [push]
     default = simple
 [alias]
-    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    l = log --pretty=oneline --graph --abbrev-commit
+    ll = log --pretty=format:'%h || %ar || %an || %s' --graph
+    lf = log --pretty=format:'%h %s' --name-status
+    sc = log --oneline -S
+
     s = status --short
     d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
@@ -13,5 +17,5 @@
 	editor = vim
 [color]
 	ui = auto
-[http]
-[diff]
+[remote "origin"]
+	prune = true
