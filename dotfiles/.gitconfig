@@ -4,7 +4,7 @@
 [push]
     default = simple
 [alias]
-    l = log --pretty=oneline --graph --abbrev-commit
+    l = log --pretty=oneline --graph --abbrev-commit -20
     ll = log --pretty=format:'%h || %ar || %an || %s' --graph
     lf = log --pretty=format:'%h %s' --name-status
     sc = log --oneline -S
