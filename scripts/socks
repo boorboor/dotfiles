@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 start(){
-    ssh -D 8123 -f -C -q -N $1 && echo "socks is runing"
+    ssh -D 8123 -f -C -q -N $1 && echo "Started" || echo "Failed to start"
     # set socks setting in System settings > Network > network proxy 
     gsettings set org.gnome.system.proxy mode 'manual'
     gsettings set org.gnome.system.proxy.socks port 8123
