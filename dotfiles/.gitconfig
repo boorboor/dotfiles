@@ -4,14 +4,14 @@
 [push]
     default = simple
 [alias]
-    l = log --pretty=oneline --graph --abbrev-commit -20
-    ll = log --pretty=format:'%h || %ar || %an || %s' --graph
-    lf = log --pretty=format:'%h %s' --name-status
-    sc = log --oneline -S
-
-    s = status --short
     d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
+    l = log --pretty=oneline --graph --abbrev-commit -20
+    ll = log --pretty=format:'%h || %ar || %an || %s'
+    lf = log --pretty=format:'%h %an %s ' --name-status
+    search = log -S
+    conflict = diff --name-only --diff-filter=U
+    unstage = reset HEAD --
+    last = log -1 HEAD
 [core]
 	excludesfile = /home/dev/.gitignore_global
 	editor = vim
