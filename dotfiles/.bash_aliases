@@ -1,6 +1,14 @@
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+# Colors
+SWITCH="\[\033["
+NORMAL="${SWITCH}0;00m\]"
+RED="${SWITCH}0;31m\]"
+GREEN="${SWITCH}1;32m\]" # bold
+YELLOW="${SWITCH}0;33m\]"
+BLUE="${SWITCH}0;34m\]"
+CYAN="${SWITCH}0;36m\]"
+WHITE="${SWITCH}1;39m\]" # Bold
+
+export EDITOR=/usr/bin/vim
 
 alias lf='ls -AlhF'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -16,17 +24,13 @@ alias m8='mtr 8.8.8.8'
 alias pyserv='sudo python3 -m http.server 80'
 alias khamosh='shutdown now'
 
-function ws(){
-    cd ~/Codes/$1
-}
-
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}]"
+		echo "${BRANCH}${STAT}"
 	else
 		echo ""
 	fi
@@ -67,14 +71,24 @@ function parse_git_dirty {
 	fi
 }
 
-export PS1="\[\033[38;5;36m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] \j\[\033[00m\]$ "
-# ᨏ ♚ ♪๛
-export EDITOR=/usr/bin/vim
+# workspace switcher
+function ws(){
+    if [ -d ~/Codes/$1 ]; then
+        cd ~/Codes/$1
+        echo -e "Switched to workspace $1, have nice code time."
+        echo ""
+    else
+        echo "There is on workspace named $1".
+        echo "  options are:"
+        ls -d ~/Codes/*/ |cut -d'/' -f5
+        echo ""
+    fi
+}
 
-# export GOPATH=$HOME/Code/go
-# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PS1="${GREEN}\w ${YELLOW}\$(parse_git_branch) ${WHITE}\j ${NORMAL}$ "
 
-# pyenv
-# export PATH="/home/dev/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# start a tmux session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
