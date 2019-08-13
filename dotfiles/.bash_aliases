@@ -2,7 +2,7 @@
 SWITCH="\[\033["
 NORMAL="${SWITCH}0;00m\]"
 RED="${SWITCH}0;31m\]"
-GREEN="${SWITCH}1;32m\]" # bold
+GREEN="${SWITCH}32m\]" # bold
 YELLOW="${SWITCH}0;33m\]"
 BLUE="${SWITCH}0;34m\]"
 CYAN="${SWITCH}0;36m\]"
@@ -30,7 +30,7 @@ function parse_git_branch() {
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "${BRANCH}${STAT}"
+		echo "|${BRANCH}${STAT}|"
 	else
 		echo ""
 	fi
@@ -73,10 +73,12 @@ function parse_git_dirty {
 
 # workspace switcher
 function ws(){
-    if [ -d ~/Codes/$1 ]; then
+    if [ $# -lt 1 ]; then
+        cd ~/Codes
+        echo "  No workspace is given, you are in code area."
+    elif [ -d ~/Codes/$1 ]; then
         cd ~/Codes/$1
-        echo -e "Switched to workspace $1, have nice code time."
-        echo ""
+        echo -e "  Switched to workspace \033[32m$1\033[0;00m, have nice code time."
     else
         echo "There is on workspace named $1".
         echo "  options are:"
@@ -85,7 +87,7 @@ function ws(){
     fi
 }
 
-export PS1="${GREEN}\w ${YELLOW}\$(parse_git_branch) ${WHITE}\j ${NORMAL}$ "
+export PS1="${GREEN}\w${YELLOW}\$(parse_git_branch)${WHITE}\j${NORMAL}$ "
 
 # start a tmux session
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
