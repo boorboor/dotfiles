@@ -6,8 +6,8 @@
     default = simple
 [alias]
     d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-    l = log --pretty=oneline --graph --abbrev-commit -20
-    ll = log --pretty=format:'%h || %ar || %an || %s'
+    l = log --pretty=oneline --graph --abbrev-commit -20 --all
+    ll = log --pretty=format:'%h || %G? || %ar || %aN || %s'
     lf = log --pretty=format:'%h %an %s ' --name-status
     search = log -S
     conflict = diff --name-only --diff-filter=U
