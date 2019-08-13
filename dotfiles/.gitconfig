@@ -14,8 +14,8 @@
     unstage = reset HEAD --
     last = log -1 HEAD
 [core]
-	excludesfile = /home/dev/.gitignore_global
-	editor = vim
+    excludesfile = $HOME/.gitignore_global
+    editor = vim
 [color]
 	ui = auto
 [remote "origin"]
