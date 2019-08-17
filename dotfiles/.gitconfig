@@ -17,8 +17,18 @@
     excludesfile = $HOME/.gitignore_global
     editor = vim
 [color]
-	ui = auto
+    ui = auto
 [remote "origin"]
-	prune = true
+    prune = true
 [commit]
-	gpgsign = true
+    gpgsign = true
+[merege]
+    tool = vimdiff
+    conflictstyle = diff3
+    prompt = false
+[pull]
+    rebase = true
+[credential]
+    helper = cache --timeout 30000
+[diff]
+	tool = vimdiff

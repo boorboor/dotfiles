@@ -12,7 +12,7 @@ export EDITOR=/usr/bin/vim
 
 alias lf='ls -AlhF'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias copy='xclip -selection c'
+alias clipboard='xclip -selection clipboard'
 alias myip1='curl icanhazip.com'
 alias myip2='curl ifconfig.me'
 alias myip3='curl ipecho.net/plain'
