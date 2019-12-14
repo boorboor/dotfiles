@@ -27,7 +27,7 @@ status(){
 help(){
     echo "Usage: $0 COMMAND [USER@SERVER]"
     echo "Commands:"
-    echo "  sta user@server  Runs proxy on server by user."  
+    echo "  start user@server  Runs proxy on server by user."  
     echo "  stop             Stops proxy."
     echo "  -h, --help       Shows this message."
     echo ""

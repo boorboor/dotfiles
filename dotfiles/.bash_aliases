@@ -78,7 +78,7 @@ function ws(){
         echo "  No workspace is given, you are in code area."
     elif [ -d ~/Codes/$1 ]; then
         cd ~/Codes/$1
-        echo -e "  Switched to workspace \033[32m$1\033[0;00m, have nice code time."
+        echo -e "  Switched to workspace \033[32m$1\033[0;00m, have a nice code time."
     else
         echo "There is on workspace named $1".
         echo "  options are:"
