@@ -87,6 +87,18 @@ function ws(){
     fi
 }
 
+function shecan(){
+    if [ $# -lt 1 ]; then
+        cat /etc/resolv.conf |grep nameserver
+    elif [ $1 == 'on' ]; then
+        sudo sed -i s/127.0.0.53/185.51.200.2/ /etc/resolv.conf && \
+            echo 'nameservers set to shecan service'; grep nameserver /etc/resolv.conf
+    elif [ $1 == 'off' ]; then
+        sudo sed -i s/185.51.200.2/127.0.0.53/ /etc/resolv.conf && \
+            echo 'nameservers set to shecan service'; grep nameserver /etc/resolv.conf
+    fi
+}
+
 export PS1="${GREEN}\w${YELLOW}\$(parse_git_branch)${WHITE}\j${NORMAL}$ "
 
 # start a tmux session
