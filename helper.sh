@@ -28,6 +28,8 @@ DOTFILES=(
     '.gitconfig'
     '.tmux.conf'
     '.psqlrc'
+    '.sqliterc'
+    '.gitignore_global'
     '.vim/'
 )
 
