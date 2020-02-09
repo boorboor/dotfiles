@@ -96,7 +96,7 @@ function shecan(){
             echo 'nameservers set to shecan service'; grep nameserver /etc/resolv.conf
     elif [ $1 == 'off' ]; then
         sudo sed -i s/185.51.200.2/127.0.0.53/ /etc/resolv.conf && \
-            echo 'nameservers set to shecan service'; grep nameserver /etc/resolv.conf
+            echo 'nameservers set to default service'; grep nameserver /etc/resolv.conf
     fi
 }
 
