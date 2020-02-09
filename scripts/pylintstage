@@ -3,8 +3,9 @@
 """
     pre-commit git hook script that uses Pylint for automated code review.
 
-    If any python file's rating falls below the ``PASS_THRESHOLD``,
-    this script will return nonzero and the commit will be rejected.
+    Checks staged python files if any python file's rating falls below the
+    ``PASS_THRESHOLD``, this script will return nonzero and the commit
+    will be rejected.
 
     This script must be located at ``$REPO/.git/hooks/pre-commit`` and be
     executable.
