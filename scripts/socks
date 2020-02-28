@@ -5,10 +5,10 @@ start(){
     # set socks setting in System settings > Network > network proxy 
     gsettings set org.gnome.system.proxy mode 'manual'
     gsettings set org.gnome.system.proxy.socks port 8123
-    gsettings set org.gnome.system.proxy.socks host 'localhost'
+    gsettings set org.gnome.system.proxy.socks host '127.0.0.1'
     gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', '::1']"
     
-    all_proxy=socks://localhost:8123/
+    export all_proxy=socks://127.0.0.1:8123/
 }
 
 stop(){
