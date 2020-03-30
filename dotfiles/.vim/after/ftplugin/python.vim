@@ -19,9 +19,7 @@ setlocal encoding=utf-8 " Use an encoding that supports Unicode.
 setlocal fileformat=unix
 setlocal wildignore=*.pyc
 
-compiler pylint
-let g:pylint_onwrite = 0
-let g:pylint_cwindow = 0
+" compiler pylint
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>

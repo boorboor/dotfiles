@@ -37,3 +37,5 @@
     tool = vimdiff
 [apply]
     whitespace = fix
+[protocol]
+	version = 2
