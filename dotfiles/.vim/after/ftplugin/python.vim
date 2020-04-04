@@ -1,4 +1,3 @@
-
 setlocal expandtab " Insert 'softtabstop' amount of space characters.
 setlocal softtabstop=4 " Sets tab key width.
 setlocal shiftwidth=4 " affects what happens when you press >>, << or ==.
@@ -27,4 +26,3 @@ map <leader>p ofrom pprint import pprint; pprint() # DEBUG<ESC>T(i
 map <leader>f :update<CR>:!isort %<CR>:!autopep8 --in-place --aggressive --aggressive %<CR>
 map <leader>i :update<CR>:!isort %<CR>
 map <silent> <F5> :update<bar>!clear; python3 '%'<CR>
-
