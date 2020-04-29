@@ -34,9 +34,6 @@ set incsearch " Incremental search that shows partial matches.
 set hlsearch " Enable search highlighting.
 set smartcase " Case-sensitive when search query contains an uppercase letter.
 
-" cancel a search with //.
-noremap <silent> // :noh<CR><Esc>
-
 " Notice diffrent line wraping options in ftplugin files are set.
 set wrap  " Enable line wrapping.
 set linebreak " Avoid wrapping a line in the middle of a word.

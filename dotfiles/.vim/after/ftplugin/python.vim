@@ -9,6 +9,10 @@ setlocal colorcolumn=80 " Add a colored column to avoid going to far
 setlocal showmatch " Highlight pair parenthesis.
 setlocal cursorline " Make line cursor placed highlighted.
 
+setlocal foldenable " Enable folding.
+setlocal foldmethod=indent " Fold base on indentation.
+setlocal foldnestmax=3  " Fold only one step in.
+
 setlocal nosmartindent
 setlocal autoindent
 syntax enable
