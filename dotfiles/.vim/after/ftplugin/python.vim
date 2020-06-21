@@ -11,15 +11,17 @@ setlocal cursorline " Make line cursor placed highlighted.
 
 setlocal foldenable " Enable folding.
 setlocal foldmethod=indent " Fold base on indentation.
-setlocal foldnestmax=3  " Fold only one step in.
+setlocal foldnestmax=2  " Fold only one step in.
 
 setlocal nosmartindent
 setlocal autoindent
 syntax enable
 filetype plugin on
 
+command! MakeTags ctags -R .
 setlocal encoding=utf-8 " Use an encoding that supports Unicode.
 setlocal fileformat=unix
+setlocal path+=**
 setlocal wildignore=*.pyc
 
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>

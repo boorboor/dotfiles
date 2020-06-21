@@ -102,7 +102,7 @@ function shecan(){
 
 export PS1="${GREEN}\w${YELLOW}\$(parse_git_branch)${WHITE}\j${NORMAL}$ "
 
-# start a tmux session
+# Start a tmux session
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
