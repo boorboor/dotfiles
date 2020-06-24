@@ -80,6 +80,14 @@ install(){
         --output /etc/bash_completion.d/docker-compose
 }
 
+remove_snap(){
+    snap remove snap-store gtk-common-themes gnome-3-{28,34}-1804
+    snap remove core18
+    sudo apt --yes purge snapd
+    sudo rm -rf /snap
+    sudo rm -rf /var/snap
+    sudo rm -rf /var/lib/snapd
+}
 help(){
     clear
     echo "Usage: $0 [OPTION]"
@@ -119,6 +127,9 @@ do
             ;;
         "-i"|"--install")
             install ${APPS[*]}
+            ;;
+        "-rs"|"--remove-snap")
+            remove_snap
             ;;
         "-h"|"--help")
             help
