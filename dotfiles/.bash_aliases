@@ -24,6 +24,7 @@ alias m8='mtr 8.8.8.8'
 alias pyserv='sudo python3 -m http.server 80'
 alias khamosh='shutdown now'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias weather='curl http://v2.wttr.in/Tehran'
 
 # get current branch in git repo
 function parse_git_branch() {
