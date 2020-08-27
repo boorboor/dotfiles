@@ -15,7 +15,7 @@ set confirm " Display a confirmation dialog when closing an unsaved file.
 
 set termguicolors    " Enable true colors for more colors.
 set background=dark " Use colors that suit a dark background.
-colorscheme NeoSolarized
+colorscheme badwolf "NeoSolarized
 
 filetype indent plugin on
 syntax enable
@@ -40,10 +40,12 @@ set linebreak " Avoid wrapping a line in the middle of a word.
 set textwidth=119 " Set max line width to 119(github page) for easy review.
 highlight SpellBad cterm=underline " Underline missspelled words.
 
+" Open list of buffers and wait for index number to jump.
+nnoremap gb :ls<cr>:b<space>
+
 set viminfo+=n~/.cache/vim/viminfo " Puts .viminfo file into .cache/vim/ Dir.
-set directory^=~/.cache/vim/ " Directory to store .swp files.
+set directory^=$HOME/.cache// " Directory to store .swp files.
 
 " print timestamp
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
-
