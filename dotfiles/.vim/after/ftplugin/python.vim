@@ -7,19 +7,21 @@ setlocal linebreak " Avoid wrapping a line in the middle of a word.
 setlocal textwidth=119 " Set max line width to 119(github page) for easy review.
 setlocal colorcolumn=80 " Add a colored column to avoid going to far
 setlocal showmatch " Highlight pair parenthesis.
-setlocal cursorline " Make line cursor placed highlighted.
+" setlocal cursorline " Make line cursor placed highlighted.
 setlocal listchars=eol:⏎,tab:\ \ ┊,trail:•,extends:…,precedes:…,space:⎵
 
 setlocal foldenable " Enable folding.
 setlocal foldmethod=indent " Fold base on indentation.
 setlocal foldnestmax=2  " Fold only one step in.
 
+setlocal updatetime=1000
 setlocal nosmartindent
 setlocal autoindent
 syntax enable
 filetype plugin on
 
 command! MakeTags ctags -R .
+command! Run python3 -i %
 setlocal encoding=utf-8 " Use an encoding that supports Unicode.
 setlocal fileformat=unix
 setlocal path+=**
