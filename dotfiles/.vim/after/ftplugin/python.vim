@@ -7,8 +7,8 @@ setlocal linebreak " Avoid wrapping a line in the middle of a word.
 setlocal textwidth=119 " Set max line width to 119(github page) for easy review.
 setlocal colorcolumn=80 " Add a colored column to avoid going to far
 setlocal showmatch " Highlight pair parenthesis.
-" setlocal cursorline " Make line cursor placed highlighted.
 setlocal listchars=eol:⏎,tab:\ \ ┊,trail:•,extends:…,precedes:…,space:⎵
+setlocal signcolumn=yes
 
 setlocal foldenable " Enable folding.
 setlocal foldmethod=indent " Fold base on indentation.
@@ -29,6 +29,7 @@ setlocal wildignore=*.pyc
 
 nnoremap gb :ls<cr>:b<space>
 
+
 map <leader>l :set invlist<cr>
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>
 map <leader>p ofrom pprint import pprint; pprint() # DEBUG<ESC>T(i
@@ -36,6 +37,7 @@ map <leader>f :update<CR>:!isort %<CR>:!autopep8 --in-place --aggressive --aggre
 map <leader>i :update<CR>:!isort %<CR>
 map <silent> <F5> :update<bar>!clear; python3 '%'<CR>
 
+highlight SpellBad cterm=underline " Underline missspelled words.
 " Highlight trailing spaces and tabs charachters in red background.
 highlight TrailingSpaceChar ctermbg=1
 highlight TabChar ctermbg=1

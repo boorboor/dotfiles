@@ -15,7 +15,7 @@ set confirm " Display a confirmation dialog when closing an unsaved file.
 
 set termguicolors    " Enable true colors for more colors.
 set background=dark " Use colors that suit a dark background.
-colorscheme badwolf "NeoSolarized
+colorscheme badwolf " Set color colorful.
 
 filetype indent plugin on
 syntax enable
@@ -25,7 +25,7 @@ map <leader>sp :setlocal spell! spelllang=en_us<CR>
 set visualbell
 set t_vb=
 
-" Notice diffrent tab key options in ftplugin files are set.
+" Notice different tab key options in ftplugin files are set.
 set expandtab " Insert 'softtabstop' amount of space characters.
 set softtabstop=4 " Sets tab key width.
 set shiftwidth=4 " Affects what happens when you press >>, << or ==.
@@ -34,7 +34,7 @@ set incsearch " Incremental search that shows partial matches.
 set hlsearch " Enable search highlighting.
 set smartcase " Case-sensitive when search query contains an uppercase letter.
 
-" Notice diffrent line wraping options in ftplugin files are set.
+" Notice different line wrapping options in ftplugin files are set.
 set wrap  " Enable line wrapping.
 set linebreak " Avoid wrapping a line in the middle of a word.
 set textwidth=119 " Set max line width to 119(github page) for easy review.
@@ -46,6 +46,6 @@ nnoremap gb :ls<cr>:b<space>
 set viminfo+=n~/.cache/vim/viminfo " Puts .viminfo file into .cache/vim/ Dir.
 set directory^=$HOME/.cache// " Directory to store .swp files.
 
-" print timestamp
+" print time stamp
 nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
