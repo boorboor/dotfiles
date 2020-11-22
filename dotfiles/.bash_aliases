@@ -23,7 +23,7 @@ alias p8='ping 8.8.8.8 -c 3'
 alias m8='mtr 8.8.8.8'
 alias pyserv='sudo python3 -m http.server 80'
 alias khamosh='shutdown now'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 alias weather='curl http://v2.wttr.in/Tehran'
 
 # get current branch in git repo
@@ -124,3 +124,5 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
+# Add golang into path.
+export PATH=$PATH:/usr/local/go/bin
