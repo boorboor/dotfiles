@@ -35,7 +35,7 @@ map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>
 map <leader>p ofrom pprint import pprint; pprint() # DEBUG<ESC>T(i
 "map <leader>f :update<CR>:!isort '%'<CR>:!autopep8 --in-place --aggressive --aggressive %<CR>
 map <leader>i :update<CR>:!isort '%'<CR>
-map <leader>f :update<CR>:!clear; pylint '%'<CR>
+map <leader>f :update<CR>:!clear; pylint --disable C0114,C0115,E0401 '%'<CR>
 map <silent> <F5> :update<bar>!clear; python3 '%'<CR>
 
 highlight SpellBad cterm=underline " Underline missspelled words.

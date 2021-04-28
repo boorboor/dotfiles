@@ -5,7 +5,6 @@
 [push]
     default = simple
 [alias]
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
     s = status --short
     f = fetch --all --prune --progress --tags
     l = log --pretty=oneline --graph --abbrev-commit -20
@@ -14,13 +13,11 @@
     search = log -S
     conflict = diff --name-only --diff-filter=U
     unstage = reset HEAD --
-    last = log -1 HEAD
 [core]
-    excludesfile = $HOME/.gitignore_global
-    editor = vim
     whitespace = trailing-space,space-before-tab
+    pager = less -r
 [color]
-    ui = auto
+    ui = true
 [remote "origin"]
     prune = true
 [commit]
@@ -35,10 +32,10 @@
     helper = cache --timeout 30000
 [diff]
     tool = vimdiff
-	submodule = log
+    submodule = log
 [apply]
     whitespace = fix
 [protocol]
-	version = 2
+    version = 2
 [status]
-	submodulesummary = 1
+    submodulesummary = 1

@@ -8,24 +8,6 @@ BLUE="${SWITCH}0;34m\]"
 CYAN="${SWITCH}0;36m\]"
 WHITE="${SWITCH}1;39m\]" # Bold
 
-export EDITOR=/usr/bin/vim
-
-alias lf='ls -AlhF'
-alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias clipboard='xclip -selection clipboard'
-alias myip1='curl icanhazip.com'
-alias myip2='curl ifconfig.me'
-alias myip3='curl ipecho.net/plain'
-alias TODO='grep -rin TODO'
-alias note='vim ~/Documents/note.txt'
-alias ports='ss -tul4np'
-alias p8='ping 8.8.8.8 -c 3'
-alias m8='mtr 8.8.8.8'
-alias pyserv='sudo python3 -m http.server 80'
-alias khamosh='shutdown now'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
-alias weather='curl http://v2.wttr.in/Tehran'
-
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -73,50 +55,6 @@ function parse_git_dirty {
 	fi
 }
 
-# workspace switcher
-function ws(){
-    if [ $# -lt 1 ]; then
-        cd ~/Codes
-        echo "  No workspace is given, you are in code area."
-    elif [ -d ~/Codes/$1 ]; then
-        cd ~/Codes/$1
-        echo -e "  Switched to workspace \033[32m$1\033[0;00m, have a nice code time."
-    else
-        echo "There is on workspace named $1".
-        echo "  options are:"
-        ls -d ~/Codes/*/ |cut -d'/' -f5
-        echo ""
-    fi
-}
-
-function shecan(){
-    if [ $# -lt 1 ]; then
-        cat /etc/resolv.conf |grep nameserver
-    elif [ $1 == 'on' ]; then
-        sudo sed -i s/127.0.0.53/185.51.200.2/ /etc/resolv.conf && \
-            echo 'nameservers set to shecan service'; grep nameserver /etc/resolv.conf
-    elif [ $1 == 'off' ]; then
-        sudo sed -i s/185.51.200.2/127.0.0.53/ /etc/resolv.conf && \
-            echo 'nameservers set to default service'; grep nameserver /etc/resolv.conf
-    fi
-}
-
-function ssocks(){
-    sudo sslocal -vv -d $1 -c /etc/shadowsocks.json
-    # export http_proxy="http://10.10.1.10:8080/"
-    # export https_proxy="http://10.10.1.10:8080/"
-    # export ftp_proxy="http://10.10.1.10:8080/"
-    # export no_proxy="127.0.0.1,localhost"
-
-    # For curl
-    # export HTTP_PROXY="http://10.10.1.10:8080/"
-    # export HTTPS_PROXY="http://10.10.1.10:8080/"
-    # export FTP_PROXY="http://10.10.1.10:8080/"
-    # export NO_PROXY="127.0.0.1,localhost"
-
-
-}
-
 export PS1="${GREEN}\w${YELLOW}\$(parse_git_branch)${WHITE}\j${NORMAL}$ "
 
 # Start a tmux session
@@ -124,5 +62,9 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
-# Add golang into path.
+export EDITOR=/usr/bin/nvim
+
+# Add the Golang binaries into path.
+export GOBIN=$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
