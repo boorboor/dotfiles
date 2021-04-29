@@ -8,13 +8,18 @@ setlocal showmatch  " Highlight pair parenthesis.
 setlocal nowrap  " Disable line wrapping.
 setlocal colorcolumn=80,119,120  " Add a colored column to avoid going too far
 setlocal signcolumn=yes  " draw sign column even no sign present.
+setlocal signcolumn=yes:2  " draw sign column even no sign present.
+setlocal foldcolumn=3  " draw sign column even no sign present.
 setlocal foldenable  " Enable folding.
 setlocal foldmethod=indent  " Fold base on indentation.
-setlocal foldnestmax=2  " Fold only one step in.
-setlocal updatetime=1000  " Update swap file time.
+setlocal foldnestmax=0  " Fold only one step in.
+setlocal updatetime=500  " Update swap file time.
 setlocal encoding=utf-8  " Use an encoding that supports Unicode.
 setlocal fileformat=unix  " File format setting.
 setlocal wildignore=*.pyc
+
+" Removing all trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
 
 " Debuger insert mapping.
 map <leader>d oimport pdb; pdb.set_trace() # BREAK POINT<ESC>

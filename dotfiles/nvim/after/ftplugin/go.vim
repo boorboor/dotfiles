@@ -13,3 +13,5 @@ setlocal foldnestmax=2  " Fold only one step in.
 setlocal updatetime=1000  " Update swap file time.
 setlocal encoding=utf-8  " Use an encoding that supports Unicode.
 setlocal fileformat=unix  " File format setting.
+setlocal omnifunc=v:lua.vim.lsp.omnifunc
+setlocal shortmess+=c
