@@ -7,15 +7,16 @@ setlocal shiftwidth=4  " affects what happens when you press >>, << or ==.
 setlocal showmatch  " Highlight pair parenthesis.
 setlocal nowrap  " Disable line wrapping.
 setlocal colorcolumn=80,119,120  " Add a colored column to avoid going too far
-setlocal signcolumn=yes  " draw sign column even no sign present.
 setlocal signcolumn=yes:2  " draw sign column even no sign present.
 setlocal foldcolumn=3  " draw sign column even no sign present.
 setlocal foldenable  " Enable folding.
 setlocal foldmethod=indent  " Fold base on indentation.
 setlocal foldnestmax=0  " Fold only one step in.
-setlocal updatetime=500  " Update swap file time.
+setlocal updatetime=200  " Update swap file time.
 setlocal encoding=utf-8  " Use an encoding that supports Unicode.
 setlocal fileformat=unix  " File format setting.
+setlocal omnifunc=v:lua.vim.lsp.omnifunc
+setlocal shortmess+=c
 setlocal wildignore=*.pyc
 
 " Removing all trailing whitespace
