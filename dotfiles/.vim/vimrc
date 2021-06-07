@@ -44,7 +44,7 @@ highlight SpellBad cterm=underline " Underline missspelled words.
 " Open list of buffers and wait for index number to jump.
 nnoremap gb :ls<cr>:b<space>
 
-set viminfo+=n~/.cache/vim/viminfo " Puts .viminfo file into .cache/vim/ Dir.
+" set viminfo+=n~/.cache/vim/viminfo " Puts .viminfo file into .cache/vim/ Dir.
 set directory^=$HOME/.cache// " Directory to store .swp files.
 
 " print time stamp
