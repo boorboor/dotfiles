@@ -8,6 +8,8 @@
     s = status --short
     f = fetch --all --prune --progress --tags
     l = log --pretty=oneline --graph --abbrev-commit -20
+    d = diff
+    co = checkout
     ll = log --pretty=format:'%h || %G? || %ar || %aN || %s'
     lf = log --pretty=format:'%h %an %s ' --name-status
     search = log -S
@@ -16,6 +18,8 @@
 [core]
     whitespace = trailing-space,space-before-tab
     pager = less -r
+    editor = nvim
+    pager = less -F -X
 [color]
     ui = true
 [remote "origin"]
