@@ -170,3 +170,7 @@ end
 require('lspconfig').pylsp.setup{
   on_attach = on_attach,
 }
+-- npm install -g typescript-language-server
+require('lspconfig').tsserver.setup{
+  on_attach = on_attach,
+}
