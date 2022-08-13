@@ -1,7 +1,5 @@
 -- Define helper functions
 local function map(mode, l, r, opts)  -- Make mappings
-  opts = opts or {}
-  opts.buffer = bufnr
   vim.keymap.set(mode, l, r, opts)
 end
 
@@ -94,7 +92,7 @@ require('spellsitter').setup()  -- Use `lewis6991/spellsitter.nvim`
 
 require('gitsigns').setup {  -- Use `lewis6991/gitsigns.nvim`
   current_line_blame_formatter = '     <author>, <author_time:%R> - <summary>',
-  on_attach = function(bufnr)
+  on_attach = function()
     local gs = package.loaded.gitsigns
     -- Navigation
     map('n', ']c', function()

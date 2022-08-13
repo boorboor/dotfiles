@@ -8,8 +8,6 @@ BLUE="${SWITCH}0;34m\]"
 CYAN="${SWITCH}0;36m\]"
 WHITE="${SWITCH}1;39m\]" # Bold
 
-alias='xclip -selection clipboard'
-
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`

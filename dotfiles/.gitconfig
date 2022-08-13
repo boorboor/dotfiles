@@ -9,14 +9,15 @@
     f = fetch --all --prune --progress --tags
     l = log --pretty=oneline --graph --abbrev-commit -20
     d = diff
+    b = branch -vv
     co = checkout
-    ll = log --pretty=format:'%h || %G? || %ar || %aN || %s'
+    ll = log --pretty=format:'%h ┊ %G? ┊ %ar ┊ %aN ┊ %s'
     lf = log --pretty=format:'%h %an %s ' --name-status
     search = log -S
     conflict = diff --name-only --diff-filter=U
     unstage = reset HEAD --
 [core]
-    whitespace = trailing-space,space-before-tab
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager = less -r
     editor = nvim
     pager = less -F -X
@@ -32,14 +33,20 @@
     prompt = false
 [pull]
     rebase = true
+    ff = only
 [credential]
     helper = cache --timeout 30000
 [diff]
     tool = vimdiff
     submodule = log
+    colorMoved = zebra
 [apply]
     whitespace = fix
 [protocol]
     version = 2
 [status]
     submodulesummary = 1
+[fetch]
+    prune = true
+[branch]
+    autoSetupMerge = always
