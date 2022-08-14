@@ -165,11 +165,25 @@ local on_attach = function(client, bufnr)
   map('n', 'gr', vim.lsp.buf.references, bufopts)
   map('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- sudo pip install 'python-lsp-server[all]'
 require('lspconfig').pylsp.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 -- npm install -g typescript-language-server
 require('lspconfig').tsserver.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+local cmp = require('cmp');
+cmp.setup{  -- Use `hrsh7th/nvim-cmp`
+  sources = {
+    { name = 'nvim_lsp' }  -- Use `hrsh7th/cmp-nvim-lsp`
+  },
 }
