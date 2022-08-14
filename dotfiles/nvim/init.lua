@@ -119,6 +119,7 @@ require('gitsigns').setup {  -- Use `lewis6991/gitsigns.nvim`
 }
 
 require('telescope').setup{  -- Use `nvim-telescope/telescope.nvim`
+-- Use `BurntSushi/ripgrep` for live_grep
   defaults = {
     mappings = {
       n = {
