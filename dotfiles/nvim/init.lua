@@ -147,7 +147,6 @@ map('n', ']d', vim.diagnostic.goto_next, opts)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   map('n', 'gD', vim.lsp.buf.declaration, bufopts)
   map('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -183,7 +182,22 @@ require('lspconfig').tsserver.setup{
 
 local cmp = require('cmp');
 cmp.setup{  -- Use `hrsh7th/nvim-cmp`
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- Use `L3MON4D3/LuaSnip`
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+  }),
   sources = {
-    { name = 'nvim_lsp' }  -- Use `hrsh7th/cmp-nvim-lsp`
+    { name = 'nvim_lsp' },  -- Use `hrsh7th/cmp-nvim-lsp`
+    { name = 'spell' },  -- Use `f3fora/cmp-spell.git`
+    { name = 'luasnip' },  -- `saadparwaiz1/cmp_luasnip`
+    { name = 'buffer' },
   },
 }
