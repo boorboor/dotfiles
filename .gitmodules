@@ -1,3 +1,54 @@
 [submodule "dotfiles/dotfiles/.vim/pack/general/start/vim-gitgutter"]
 	path = dotfiles/dotfiles/.vim/pack/general/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "dotfiles/nvim/pack/plugins/start/gitsigns.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/cmp-buffer"]
+	path = dotfiles/nvim/pack/plugins/start/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
+[submodule "dotfiles/nvim/pack/plugins/start/LuaSnip"]
+	path = dotfiles/nvim/pack/plugins/start/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip.git
+[submodule "dotfiles/nvim/pack/plugins/start/cmp_luasnip"]
+	path = dotfiles/nvim/pack/plugins/start/cmp_luasnip
+	url = https://github.com/saadparwaiz1/cmp_luasnip.git
+[submodule "dotfiles/nvim/pack/plugins/start/cmp-nvim-lsp"]
+	path = dotfiles/nvim/pack/plugins/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "dotfiles/nvim/pack/plugins/start/cmp-spell"]
+	path = dotfiles/nvim/pack/plugins/start/cmp-spell
+	url = https://github.com/f3fora/cmp-spell.git
+[submodule "dotfiles/nvim/pack/plugins/start/lualine.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/nvim-cmp"]
+	path = dotfiles/nvim/pack/plugins/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "dotfiles/nvim/pack/plugins/start/nvim-lspconfig"]
+	path = dotfiles/nvim/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "dotfiles/nvim/pack/plugins/start/nvim-treesitter"]
+	path = dotfiles/nvim/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "dotfiles/nvim/pack/plugins/start/vim-devicons"]
+	path = dotfiles/nvim/pack/plugins/start/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
+[submodule "dotfiles/nvim/pack/plugins/start/nvim-web-devicons"]
+	path = dotfiles/nvim/pack/plugins/start/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons.git
+[submodule "dotfiles/nvim/pack/plugins/start/onedark.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/onedark.nvim
+	url = https://github.com/navarasu/onedark.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/plenary.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/spellsitter.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/spellsitter.nvim
+	url = https://github.com/lewis6991/spellsitter.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/telescope.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/telescope-fzf-native.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/telescope-fzf-native.nvim
+	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git

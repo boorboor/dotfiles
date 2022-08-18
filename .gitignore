@@ -34,3 +34,4 @@ tags
 # Persistent undo
 [._]*.un~
 
+spell/
