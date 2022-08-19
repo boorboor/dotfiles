@@ -58,17 +58,7 @@ map('i', '<C-v>', '<Esc>"+pi', { noremap=true })  -- Paste in insert mode from s
 map('n', ']q', '<CMD>cn<CR>')  -- Next quick list item
 map('n', '[q', '<CMD>cp<CR>')  -- Previous quick list item
 
--- auto save buffer on focus loss, default false
-vim.api.nvim_create_autocmd('FocusLost', {
-  callback = function() if vim.g.f_auto_save then vim.cmd('silent! write') end end,
-})
-map('n', '<F4>', function()
-  vim.g.f_auto_save = not vim.g.f_auto_save
-  print('auto save '..tostring(vim.g.f_auto_save))
-end)
-
 -- Plugin calls and configurations
--- Install path ~/.local/share/nvim/site/pack/main/start
 require('lualine').setup()  -- Set status line, use `nvim-lualine/lualine.nvim`
 
 require('onedark').setup {
@@ -201,3 +191,5 @@ cmp.setup{  -- Use `hrsh7th/nvim-cmp`
     { name = 'buffer' },
   },
 }
+
+require('save').setup()

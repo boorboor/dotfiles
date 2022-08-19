@@ -52,3 +52,6 @@
 [submodule "dotfiles/nvim/pack/plugins/start/telescope-fzf-native.nvim"]
 	path = dotfiles/nvim/pack/plugins/start/telescope-fzf-native.nvim
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim.git
+[submodule "dotfiles/nvim/pack/plugins/start/save.nvim"]
+	path = dotfiles/nvim/pack/plugins/start/save.nvim
+	url = git@github.com:boorboor/save.nvim.git
