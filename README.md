@@ -2,21 +2,27 @@
 
 My set of dotfiles for configuring the new setup fast.
 
-Clone the repo locally.
+Clone the repository locally.
 
 ```bash
 mkdir ~/Codes/
-Clone https://github.com/boorboor/dotfiles ~/Codes/dotfiles
+git clone https://github.com/boorboor/dotfiles ~/Codes/dotfiles
+```
+
+For having nvim plugins in one go run below.
+
+```bash
+git clone --recurse-submodules https://github.com/boorboor/dotfiles ~/Codes/dotfiles
 ```
 
 Make links for use.
 
 ```bash
-mkdir -p ~/.config/nvim/
-ln -s ~/Codes/dotfiles/dotfiles/nvim/init.lua ~/.config/nvim/
+mkdir -p ~/.config/
+ln -s ~/Codes/dotfiles/dotfiles/nvim ~/.config/
 ```
 
-Install plugins.
+Install plugins separately.
 
 ```bash
 mkdir -p ~/.local/share/nvim/site/pack/main/start/
