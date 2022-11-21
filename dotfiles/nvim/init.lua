@@ -43,13 +43,14 @@ vim.opt.listchars = {
   trail = '•',
   extends = '…',
   precedes = '…',
-  space = '~',
+  space = '␣',
 }  -- Set none printable chars 
 
 -- General key mappings
 map('n', '<leader>l', '<CMD>set invlist<CR>')  -- Toggle `listchars` show
 map('n', '<leader><leader>', '<CMD>Telescope<CR>')  -- Toggle `listchars` show
 map('n', '<leader>f', '<CMD>lua project_files()<CR>')  -- Toggle `listchars` show
+map('n', '<leader>g', '<CMD>Telescope live_grep<CR>')  -- Toggle `listchars` show
 
 map('v', '<C-c>', '"+y', { noremap=true })  -- Copy in visual mode into system clipboard
 map('n', '<C-c>', '"+yy', { noremap=true })  -- Copy in normal mode into system clipboard
@@ -68,7 +69,7 @@ require('onedark').setup {
 require('onedark').load()  -- Load color scheme, use `navarasu/onedark.nvim`
 
 require('nvim-treesitter.configs').setup {  -- Use `nvim-treesitter/nvim-treesitter`
-  ensure_installed = { 'lua', 'python' },  -- A list of parser names, or 'all'
+  ensure_installed = { 'lua', 'python', 'go', 'typescript', 'javascript' },  -- A list of parser names, or 'all'
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -149,9 +150,9 @@ local on_attach = function(client, bufnr)
   map('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  map('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  map('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  map('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  map('n', '<space>d', vim.lsp.buf.type_definition, bufopts)
+  map('n', '<space>r', vim.lsp.buf.rename, bufopts)
+  map('n', '<space>a', vim.lsp.buf.code_action, bufopts)
   map('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
@@ -171,17 +172,21 @@ require('lspconfig').tsserver.setup{
 }
 -- Needs go toolkit
 require('lspconfig').gopls.setup {
-    cmd = {"gopls", "serve"},
-    filetypes = {"go", "gomod"},
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
+  on_attach = on_attach,
+  capabilities = capabilities,
+  --cmd = {"gopls", "serve"},
+  --filetypes = {"go", "gomod"},
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
       },
+      staticcheck = true,
     },
-  }
+  },
+}
 
 local cmp = require('cmp');
 cmp.setup{  -- Use `hrsh7th/nvim-cmp`
