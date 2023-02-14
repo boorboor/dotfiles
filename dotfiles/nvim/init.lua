@@ -209,3 +209,5 @@ cmp.setup{  -- Use `hrsh7th/nvim-cmp`
 }
 
 require('save').setup()  -- mini plugin Use `boorboor/save.nvim`
+
+require('Comment').setup()
