@@ -6,7 +6,7 @@ end
 project_files = function()  -- Git file search with fallback
   local opts = {}
   local ok = pcall(require"telescope.builtin".git_files, opts)
-  if not ok then require"telescope.builtin".find_files(opts) end
+  if not ok then require"telescope.builtin".fd(opts) end
 end
 
 -- Set configuration options
@@ -47,10 +47,10 @@ vim.opt.listchars = {
 }  -- Set none printable chars 
 
 -- General key mappings
-map('n', '<leader>l', '<CMD>set invlist<CR>')  -- Toggle `listchars` show
-map('n', '<leader><leader>', '<CMD>Telescope<CR>')  -- Toggle `listchars` show
-map('n', '<leader>f', '<CMD>lua project_files()<CR>')  -- Toggle `listchars` show
-map('n', '<leader>g', '<CMD>Telescope live_grep<CR>')  -- Toggle `listchars` show
+map('n', '<Space>l', '<CMD>set invlist<CR>')  -- Toggle `listchars` show
+map('n', '<Space><Space>', '<CMD>Telescope<CR>')  -- Toggle `listchars` show
+map('n', '<Space>o', '<CMD>lua project_files()<CR>')  -- Toggle `listchars` show
+map('n', '<Space>g', '<CMD>Telescope live_grep<CR>')  -- Toggle `listchars` show
 
 map('v', '<C-c>', '"+y', { noremap=true })  -- Copy in visual mode into system clipboard
 map('n', '<C-c>', '"+yy', { noremap=true })  -- Copy in normal mode into system clipboard
@@ -96,14 +96,14 @@ require('gitsigns').setup {  -- Use `lewis6991/gitsigns.nvim`
       vim.schedule(function() gs.prev_hunk() end)
       return '<Ignore>'
     end, {expr=true})
-    map({'n', 'v'}, '<leader>hs', gs.stage_hunk)
-    map({'n', 'v'}, '<leader>hr', gs.reset_hunk)
-    map('n', '<leader>hu', gs.undo_stage_hunk)
-    map('n', '<leader>hp', gs.preview_hunk)
-    map('n', '<leader>hl', gs.toggle_current_line_blame)
-    map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-    map('n', '<leader>hd', gs.diffthis)
-    map('n', '<leader>hD', function() gs.diffthis('~') end)
+    map({'n', 'v'}, '<Space>hs', gs.stage_hunk)
+    map({'n', 'v'}, '<Space>hr', gs.reset_hunk)
+    map('n', '<Space>hu', gs.undo_stage_hunk)
+    map('n', '<Space>hp', gs.preview_hunk)
+    map('n', '<Space>hl', gs.toggle_current_line_blame)
+    map('n', '<Space>hb', function() gs.blame_line{full=true} end)
+    map('n', '<Space>hd', gs.diffthis)
+    map('n', '<Space>hD', function() gs.diffthis('~') end)
     -- Text object
     map({'o', 'x'}, 'ih', gs.select_hunk)
   end
@@ -145,15 +145,15 @@ local on_attach = function(client, bufnr)
   map('n', 'gr', vim.lsp.buf.references, bufopts)
   map('n', 'K', vim.lsp.buf.hover, bufopts)
   map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  map('n', '<space>wl', function()
+  map('n', '<Space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  map('n', '<Space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  map('n', '<Space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  map('n', '<space>d', vim.lsp.buf.type_definition, bufopts)
-  map('n', '<space>r', vim.lsp.buf.rename, bufopts)
-  map('n', '<space>a', vim.lsp.buf.code_action, bufopts)
-  map('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  map('n', '<Space>d', vim.lsp.buf.type_definition, bufopts)
+  map('n', '<Space>r', vim.lsp.buf.rename, bufopts)
+  map('n', '<Space>a', vim.lsp.buf.code_action, bufopts)
+  map('n', '<Space>f', vim.lsp.buf.formatting, bufopts)
 end
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
@@ -161,12 +161,12 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- sudo pip install 'python-lsp-server[all]'
-require('lspconfig').pylsp.setup{
+require('lspconfig').pylsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 -- npm install -g typescript-language-server
-require('lspconfig').tsserver.setup{
+require('lspconfig').tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
@@ -187,6 +187,13 @@ require('lspconfig').gopls.setup {
     },
   },
 }
+
+-- Rust setup, Run `rustup component add rust-analyzer`
+require('lspconfig').rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {'rustup', 'run', 'stable', 'rust-analyzer'},
+};
 
 local cmp = require('cmp');
 cmp.setup{  -- Use `hrsh7th/nvim-cmp`
