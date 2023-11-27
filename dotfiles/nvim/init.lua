@@ -60,6 +60,45 @@ map('n', ']q', '<CMD>cn<CR>')  -- Next quick list item
 map('n', '[q', '<CMD>cp<CR>')  -- Previous quick list item
 
 -- Plugin calls and configurations
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+plugins = {
+  {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  { 
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make'
+  },
+  'neovim/nvim-lspconfig',
+  'navarasu/onedark.nvim',
+  'nvim-treesitter/nvim-treesitter',
+  'lewis6991/gitsigns.nvim',
+  'saadparwaiz1/cmp_luasnip',
+  'hrsh7th/cmp-nvim-lsp',
+  'f3fora/cmp-spell',
+  'hrsh7th/nvim-cmp',
+  'numToStr/Comment.nvim',
+  'boorboor/save.nvim',
+}
+require("lazy").setup(plugins, opts)
+
 require('lualine').setup()  -- Set status line, use `nvim-lualine/lualine.nvim`
 
 require('onedark').setup {
@@ -78,8 +117,6 @@ require('nvim-treesitter.configs').setup {  -- Use `nvim-treesitter/nvim-treesit
     enable = true
   },
 }
-
-require('spellsitter').setup()  -- Use `lewis6991/spellsitter.nvim`
 
 require('gitsigns').setup {  -- Use `lewis6991/gitsigns.nvim`
   current_line_blame_formatter = '     <author>, <author_time:%R> - <summary>',
@@ -158,7 +195,7 @@ end
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 --- sudo pip install 'python-lsp-server[all]'
 require('lspconfig').pylsp.setup {
@@ -193,7 +230,6 @@ require('lspconfig').gopls.setup {
     },
   },
 }
-
 -- Rust setup, Run `rustup component add rust-analyzer`
 require('lspconfig').rust_analyzer.setup {
   on_attach = on_attach,
@@ -223,4 +259,4 @@ cmp.setup{  -- Use `hrsh7th/nvim-cmp`
 
 require('save').setup()  -- mini plugin Use `boorboor/save.nvim`
 
-require('Comment').setup()
+require('Comment').setup()  -- Use `numToStr/Comment.nvim`
