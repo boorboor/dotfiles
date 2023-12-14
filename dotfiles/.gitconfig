@@ -3,7 +3,8 @@
     email = boorboor@gmail.com
     signingkey = 3236520BC1654D472D5D5E28068CFD621D4263B1
 [push]
-    default = current
+    default = simple
+    autoSetupRemote = true
 [alias]
     s = status --short
     f = fetch --all --prune --progress --tags
@@ -20,6 +21,7 @@
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     editor = nvim
     pager = less -F -X
+    ignorecase = false
 [color]
     ui = true
 [remote "origin"]
@@ -48,4 +50,4 @@
 [fetch]
     prune = true
 [branch]
-    autoSetupMerge = always
+    autoSetupMerge = simple
