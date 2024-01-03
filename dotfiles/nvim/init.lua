@@ -50,6 +50,7 @@ vim.opt.listchars = {
 map('n', '<Space>l', '<CMD>set invlist<CR>')  -- Toggle `listchars` show
 map('n', '<Space><Space>', '<CMD>Telescope<CR>')
 map('n', '<Space>o', '<CMD>lua project_files()<CR>')
+map('n', '<Space>O', '<CMD>Telescope git_status<CR>')
 map('n', '<Space>g', '<CMD>Telescope live_grep<CR>')
 
 map('v', '<C-c>', '"+y', { noremap=true })  -- Copy in visual mode into system clipboard
