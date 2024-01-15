@@ -28,7 +28,7 @@ vim.opt.signcolumn = 'yes:3'  -- Draw sign columns even with on sign presence
 vim.opt.number = true  -- Show line numbers
 vim.opt.numberwidth = 4  -- Fix number column width
 --vim.opt.colorcolumn = '120'  -- Add a colored column to avoid going to far
---vim.opt.cursorline = true  -- Highlight cursor line
+vim.opt.cursorline = true  -- Highlight cursor line
 vim.opt.shortmess = vim.opt.shortmess + 'c'  -- Use short form message
 
 vim.opt.updatetime = 2000  -- Update swap file by `CursorHold` event or idea time in seconds
@@ -261,3 +261,5 @@ cmp.setup{  -- Use `hrsh7th/nvim-cmp`
 require('save').setup()  -- mini plugin Use `boorboor/save.nvim`
 
 require('Comment').setup()  -- Use `numToStr/Comment.nvim`
+
+require'lspconfig'.typos_lsp.setup {}  -- tekumara/typos-vscode
