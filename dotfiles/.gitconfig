@@ -10,7 +10,7 @@
     f = fetch --all --prune --progress --tags
     l = log --pretty=oneline --graph --abbrev-commit -20
     d = diff
-    b = branch -vv
+    b = branch -vv --sort committerdate
     co = checkout
     ll = log --pretty=format:'%h ┊ %G? ┊ %ar ┊ %aN ┊ %s'
     lf = log --pretty=format:'%h %an %s ' --name-status
