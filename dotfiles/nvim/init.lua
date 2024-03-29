@@ -20,8 +20,8 @@ vim.opt.spell = true -- Enables spell checker
 vim.opt.spelllang = 'en_us'  -- Set spelling language
 
 vim.opt.expandtab = true  -- Insert 'softtabstop' amount of space characters
-vim.opt.softtabstop = 2  -- Sets tab key width
-vim.opt.shiftwidth = 2  -- Affects what happens when you press >>, << or ==
+vim.opt.softtabstop = 4  -- Sets tab key width
+vim.opt.shiftwidth = 4  -- Affects what happens when you press >>, << or ==
 
 vim.opt.termguicolors = true  -- Enables true colors
 vim.opt.signcolumn = 'yes:3'  -- Draw sign columns even with on sign presence
@@ -29,7 +29,11 @@ vim.opt.number = true  -- Show line numbers
 vim.opt.numberwidth = 4  -- Fix number column width
 --vim.opt.colorcolumn = '120'  -- Add a colored column to avoid going to far
 vim.opt.cursorline = true  -- Highlight cursor line
+vim.opt.cursorlineopt = "number"  -- Cursor config apply to number only.
+vim.opt.scrolloff = 10  -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.shortmess = vim.opt.shortmess + 'c'  -- Use short form message
+
+vim.opt.smartcase = true  -- Search with smart case.
 
 vim.opt.updatetime = 2000  -- Update swap file by `CursorHold` event or idea time in seconds
 vim.opt.undofile = true  -- Enable persistent undo
@@ -59,6 +63,11 @@ map('i', '<C-v>', '<Esc>"+pi', { noremap=true })  -- Paste in insert mode from s
 
 map('n', ']q', '<CMD>cn<CR>')  -- Next quick list item
 map('n', '[q', '<CMD>cp<CR>')  -- Previous quick list item
+
+map('n', ']b', '<CMD>bnext<CR>')  -- Next buffer
+map('n', '[b', '<CMD>bprev<CR>')  -- Previous buffer
+
+map('n', '<BS>', '<C-^>')  -- Toggle buffer
 
 -- Plugin calls and configurations
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -236,6 +245,11 @@ require('lspconfig').rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {'rustup', 'run', 'stable', 'rust-analyzer'},
+};
+-- C++ setup
+require('lspconfig').ccls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
 };
 
 local cmp = require('cmp');
