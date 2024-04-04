@@ -50,4 +50,4 @@
 [fetch]
     prune = true
 [branch]
-    autoSetupMerge = simple
+    autoSetupMerge = always
