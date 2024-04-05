@@ -184,7 +184,6 @@ map('n', '[d', vim.diagnostic.goto_prev, opts)
 map('n', ']d', vim.diagnostic.goto_next, opts)
 
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   map('n', 'gD', vim.lsp.buf.declaration, bufopts)
   map('n', 'gd', vim.lsp.buf.definition, bufopts)
