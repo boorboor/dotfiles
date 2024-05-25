@@ -4,17 +4,16 @@ local function map(mode, l, r, opts)  -- Make mappings
 end
 
 project_files = function()  -- Git file search with fallback
-  local opts = {}
   local ok = pcall(require"telescope.builtin".git_files, opts)
   if not ok then require"telescope.builtin".fd(opts) end
 end
 
 -- Set configuration options
-vim.opt.hidden = true  -- Lets leave unsaved buffers
-vim.opt.confirm = true  -- Show confirmation message on buffer close.
+vim.opt.hidden = true  -- Allow switching buffers without saving
+vim.opt.confirm = true  -- Prompt to save before closing unsaved buffers
 vim.opt.autoread = true  -- Reads file if changed outside vim (triggered running command)
 
-vim.opt.encoding = 'UTF-8'  -- Use Unicode encoding
+vim.opt.encoding = 'utf-8'  -- Use Unicode encoding
 vim.opt.fileformat = 'unix'  -- Use Unix file format, matter of new lines
 vim.opt.spell = true -- Enables spell checker
 vim.opt.spelllang = 'en_us'  -- Set spelling language
@@ -56,6 +55,7 @@ map('n', '<Space><Space>', '<CMD>Telescope<CR>')
 map('n', '<Space>o', '<CMD>lua project_files()<CR>')
 map('n', '<Space>O', '<CMD>Telescope git_status<CR>')
 map('n', '<Space>g', '<CMD>Telescope live_grep<CR>')
+map('n', '<Space>G', '<CMD>Telescope grep_string<CR>')
 
 map('v', '<C-c>', '"+y', { noremap=true })  -- Copy in visual mode into system clipboard
 map('n', '<C-c>', '"+yy', { noremap=true })  -- Copy in normal mode into system clipboard
