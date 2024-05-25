@@ -199,7 +199,7 @@ local on_attach = function(client, bufnr)
   map('n', '<Space>d', vim.lsp.buf.type_definition, bufopts)
   map('n', '<Space>r', vim.lsp.buf.rename, bufopts)
   map('n', '<Space>a', vim.lsp.buf.code_action, bufopts)
-  map('n', '<Space>f', vim.lsp.buf.formatting, bufopts)
+  map('n', '<Space>f', vim.lsp.buf.format, bufopts)
 end
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
