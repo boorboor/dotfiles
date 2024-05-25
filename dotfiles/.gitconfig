@@ -3,7 +3,7 @@
     email = boorboor@gmail.com
     signingkey = 3236520BC1654D472D5D5E28068CFD621D4263B1
 [push]
-    default = simple
+    default = current
     autoSetupRemote = true
 [alias]
     s = status --short
