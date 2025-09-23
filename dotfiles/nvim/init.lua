@@ -129,9 +129,6 @@ require('nvim-treesitter.configs').setup { -- Use `nvim-treesitter/nvim-treesitt
         enable = true,
         additional_vim_regex_highlighting = false,
     },
-    indent = {
-        enable = true
-    },
 }
 require('nvim-autopairs').setup()
 
