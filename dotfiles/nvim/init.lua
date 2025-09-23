@@ -178,6 +178,7 @@ require('telescope').setup { -- Use `nvim-telescope/telescope.nvim`
     },
     pickers = {
         builtin = { theme = 'dropdown', previewer = false, },
+        git_files = { theme = 'horizontal' },
         grep_string = { "--hidden", "--glob", "!**/.git/*", "--glob" },
     },
 }
@@ -187,6 +188,13 @@ require('telescope').load_extension('fzf') -- Override the default file sorter
 local opts = { noremap = true, silent = true }
 map('n', '[d', vim.diagnostic.goto_prev, opts)
 map('n', ']d', vim.diagnostic.goto_next, opts)
+vim.diagnostic.config({
+    virtual_text = true, -- Show diagnostics in virtual text
+    signs = false,        -- Show signs in the sign column
+    underline = true,    -- Underline the text with diagnostics
+    update_in_insert = false, -- Update diagnostics in insert mode
+    severity_sort = true, -- Sort diagnostics by severity
+})
 
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
