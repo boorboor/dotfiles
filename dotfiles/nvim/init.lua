@@ -99,7 +99,7 @@ plugins = {
         event = "InsertEnter",
         config = true
     },
-    'github/copilot.vim',
+    'github/copilot.vim',  -- Install node v22+
     'neovim/nvim-lspconfig',
     'navarasu/onedark.nvim',
     'lewis6991/gitsigns.nvim',
@@ -216,27 +216,26 @@ local on_attach = function(client, bufnr)
 end
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 --- sudo pip install 'python-lsp-server[all]'
-require('lspconfig').pylsp.setup {
+vim.lsp.config('pylsp',{
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
 -- pip install ruff-lsp
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 -- npm install -g typescript-language-server
-require('lspconfig').ts_ls.setup {
+vim.lsp.config('ts_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 -- Needs go toolkit
-require('lspconfig').gopls.setup {
+vim.lsp.config('gopls', {
     on_attach = on_attach,
     capabilities = capabilities,
     --cmd = {"gopls", "serve"},
@@ -251,18 +250,18 @@ require('lspconfig').gopls.setup {
             staticcheck = true,
         },
     },
-}
+})
 -- Rust setup, Run `rustup component add rust-analyzer`
-require('lspconfig').rust_analyzer.setup {
+vim.lsp.config('rust_analyzer', {
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
-};
+})
 -- C++ setup
-require('lspconfig').ccls.setup {
+vim.lsp.config('ccls', {
     on_attach = on_attach,
     capabilities = capabilities,
-};
+})
 
 local cmp = require('cmp');
 cmp.setup { -- Use `hrsh7th/nvim-cmp`
@@ -288,4 +287,4 @@ require('save').setup()               -- mini plugin Use `boorboor/save.nvim`
 
 require('Comment').setup()            -- Use `numToStr/Comment.nvim`
 
-require 'lspconfig'.typos_lsp.setup {} -- Use tekumara/typos-vscode
+vim.lsp.config('typos_lsp', {}) -- Use tekumara/typos-vscode
