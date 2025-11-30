@@ -24,23 +24,23 @@ opt.timeoutlen = 300
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
+local undo_dir = vim.fn.stdpath("state") .. "/undo"
 if not vim.fn.isdirectory(undo_dir) then
-    vim.fn.mkdir(undo_dir, "p")
+  vim.fn.mkdir(undo_dir, "p")
 end
 opt.undodir = undo_dir
-
 
 opt.splitright = true
 opt.splitbelow = true
 
-opt.list = true
+opt.list = false
 opt.listchars = {
-    eol = '⏎',
-    tab = '  ┊',
-    trail = '•',
-    extends = '…',
-    precedes = '…',
-    space = ' ',
+  eol = "⏎",
+  tab = "  ┊",
+  trail = "•",
+  extends = "…",
+  precedes = "…",
+  space = " ",
 }
 
 opt.shortmess:append("sI")

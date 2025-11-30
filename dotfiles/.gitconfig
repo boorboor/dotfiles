@@ -8,7 +8,7 @@
 [alias]
     s = status --short
     f = fetch --all --prune --progress --tags
-    l = log --pretty=oneline --graph --abbrev-commit -20
+    l = log --pretty=oneline --graph --abbrev-commit -60
     d = diff
     b = branch -vv --sort committerdate
     co = checkout
