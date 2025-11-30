@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: check-case-conflict
+      - id: check-merge-conflict
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.2
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: stylua
+        name: Stylua (System)
+        entry: stylua
+        language: system
+        types: [lua]
+        args: ["--config-path", ".stylua.toml"]
+
+  - repo: local
+    hooks:
+      - id: luacheck
+        name: Luacheck (System)
+        entry: luacheck
+        language: system
+        types: [lua]
+        args: ["--config", ".luacheckrc"]
