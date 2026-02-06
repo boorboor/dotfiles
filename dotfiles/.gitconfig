@@ -26,11 +26,9 @@
     ui = true
 [remote "origin"]
     prune = true
-[commit]
-    # gpgsign = true
-[merege]
+[merge]
     tool = vimdiff
-    conflictstyle = diff3
+    conflictStyle = zdiff3
     prompt = false
 [pull]
     rebase = true
