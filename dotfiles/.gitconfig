@@ -7,8 +7,8 @@
     autoSetupRemote = true
 [alias]
     s = status --short
-    f = fetch --all --prune --progress --tags
-    l = log --pretty=oneline --graph --abbrev-commit -60
+    f = fetch --all --progress --tags
+    l = log --pretty=oneline --graph --abbrev-commit -40
     d = diff
     b = branch -vv --sort committerdate
     co = checkout
@@ -22,6 +22,7 @@
     editor = nvim
     pager = less -F -X
     ignorecase = false
+	excludesfile = /Users/dev/.config/git/global_ignores
 [color]
     ui = true
 [remote "origin"]
@@ -32,9 +33,8 @@
     prompt = false
 [pull]
     rebase = true
-    ff = only
 [credential]
-    helper = cache --timeout 30000
+    helper = osxkeychain
 [diff]
     tool = vimdiff
     submodule = log
@@ -47,6 +47,3 @@
     submodulesummary = 1
 [fetch]
     prune = true
-[branch]
-    autosetupmerge = always
-    autosetuprebase = always
