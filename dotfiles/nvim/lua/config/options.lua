@@ -10,6 +10,7 @@ opt.expandtab = true
 opt.smartindent = true
 
 opt.cursorline = true
+opt.cursorlineopt = "number"
 opt.scrolloff = 10
 opt.termguicolors = true
 
@@ -17,18 +18,13 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.inccommand = "split"
 
--- opt.clipboard = "unnamedplus"
+opt.clipboard = "unnamedplus"
 opt.updatetime = 250
 opt.timeoutlen = 300
 
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
-local undo_dir = vim.fn.stdpath("state") .. "/undo"
-if not vim.fn.isdirectory(undo_dir) then
-  vim.fn.mkdir(undo_dir, "p")
-end
-opt.undodir = undo_dir
 
 opt.splitright = true
 opt.splitbelow = true

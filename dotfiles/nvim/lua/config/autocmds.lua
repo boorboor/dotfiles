@@ -1,22 +1,43 @@
 local api = vim.api
 
-local group = api.nvim_create_augroup("UserGeneral", { clear = true })
-
-api.nvim_create_autocmd("TextYankPost", {
-  group = group,
+api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
+  group = api.nvim_create_augroup("GhosttyDirSync", { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    if vim.env.GHOSTTY_RESOURCES_DIR then
+      local osc7 = string.format("\27]7;file://localhost%s\27\\", vim.uv.cwd())
+      vim.fn.chansend(vim.v.stderr, osc7)
+    end
   end,
 })
 
--- Restore cursor to the last known position when opening a file
-api.nvim_create_autocmd("BufReadPost", {
-  group = group,
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(ev)
+    local function map(mode, keys, func, desc)
+      vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
     end
+
+    -- Standard Navigation
+    map("n", "gd", function()
+      Snacks.picker.lsp_definitions()
+    end, "Goto Definition")
+    map("n", "gr", function()
+      Snacks.picker.lsp_references()
+    end, "Goto References")
+    map("n", "gI", function()
+      Snacks.picker.lsp_implementations()
+    end, "Goto Implementation")
+    map("n", "gy", function()
+      Snacks.picker.lsp_type_definitions()
+    end, "Goto Type Definition")
+
+    -- Structural Discovery
+    map("n", "<leader>ss", function()
+      Snacks.picker.lsp_workspace_symbols()
+    end, "LSP Workspace Symbols")
+
+    -- Actions
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    map("n", "<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
   end,
 })

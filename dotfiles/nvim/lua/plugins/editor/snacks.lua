@@ -5,23 +5,66 @@ return {
     lazy = false,
     opts = {
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
-      picker = { enabled = true },
       quickfile = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
-      terminal = { enabled = true },
+      explorer = { replace_netrw = true },
+      picker = {
+        enabled = true,
+        sources = {
+          projects = {
+            finder = "recent_projects",
+            patterns = {
+              "pyproject.toml",
+              "Pipfile",
+              "Cargo.toml",
+              "package.json",
+              "go.mod",
+              "Makefile",
+              "README.md",
+              ".env",
+              ".git",
+            },
+            dev = {
+              "~/Codes/",
+              "~/codes/matching-platform/", -- mono-repo
+              "~/codes/gasp-irt/",
+            },
+            projects = {
+              "~/.config/",
+            },
+            confirm = "load_session",
+            win = {
+              preview = { minimal = true },
+              input = {
+                keys = {
+                  ["<c-x>"] = { "delete_projects", mode = { "n", "i" } },
+                  ["<c-n>"] = { "new_project", mode = { "n", "i" } },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     keys = {
+      -- Core Pickers
       {
-        "<leader><space>",
+        "<leader>o",
         function()
           Snacks.picker.smart()
         end,
         desc = "Smart Find Files",
+      },
+      {
+        "<leader>b",
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = "Find Buffer",
       },
       {
         "<leader>ff",
@@ -38,25 +81,65 @@ return {
         desc = "Grep",
       },
       {
-        "<leader>sw",
+        "<leader>/w",
         function()
           Snacks.picker.grep_word()
         end,
         desc = "Visual selection or word",
+        mode = { "n", "x" },
       },
+      {
+        "<leader>j",
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = "Projects",
+      },
+      {
+        "<leader>e",
+        function()
+          Snacks.picker.explorer()
+        end,
+        desc = "File Explorer",
+      },
+      {
+        "<leader>,",
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = "Resume Last Picker",
+      },
+
+      -- Unified UI Replacements (Replacing Trouble.nvim)
+      {
+        "<leader>d",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Diagnostics Workspace",
+      },
+      {
+        "<leader>r",
+        function()
+          Snacks.picker.registers()
+        end,
+        desc = "Registers",
+      },
+
+      -- Git & Lazygit Integration
       {
         "<leader>gl",
         function()
-          Snacks.picker.git_log_file()
-        end,
-        desc = "Git Log (Current File)",
-      },
-      {
-        "<leader>gll",
-        function()
           Snacks.lazygit.log_file()
         end,
-        desc = "Lazygit Current File History",
+        desc = "Lazygit File History",
+      },
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "Lazygit",
       },
       {
         "<leader>gs",
@@ -72,19 +155,17 @@ return {
         end,
         desc = "Git Blame Line",
       },
+
+      -- UI Toggles
       {
-        "<c-/>",
-        function()
-          Snacks.terminal()
-        end,
-        desc = "Toggle Terminal",
-      },
-      {
-        "<leader>un",
+        "<esc>",
         function()
           Snacks.notifier.hide()
+          pcall(vim.cmd, "nohlsearch")
         end,
-        desc = "Dismiss All Notifications",
+        desc = "Dismiss Notifications & Clear hlsearch",
+        mode = "n",
+        expr = true,
       },
       {
         "<leader>td",
@@ -101,18 +182,11 @@ return {
         desc = "Toggle Inlay Hints",
       },
       {
-        "<leader>e",
+        "<leader>n",
         function()
-          Snacks.picker.explorer()
+          Snacks.picker.notifications()
         end,
-        desc = "File Explorer",
-      },
-      {
-        "<leader>,",
-        function()
-          Snacks.picker.resume()
-        end,
-        desc = "Resume Last Picker",
+        desc = "Notification Logs",
       },
     },
   },

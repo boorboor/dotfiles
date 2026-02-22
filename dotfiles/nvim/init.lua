@@ -30,7 +30,7 @@ require("lazy").setup({
     { import = "plugins.lsp" },
   },
   defaults = { lazy = false },
-  change_detection = { notify = false },
+  change_detection = { enable = false, notify = false },
   checker = { enabled = false, notify = false },
   performance = {
     rtp = {

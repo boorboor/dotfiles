@@ -4,113 +4,74 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "saghen/blink.cmp",
-      "b0o/schemastore.nvim", -- Better schemas for json/yaml
+      "b0o/schemastore.nvim",
     },
     config = function()
-      local lspconfig = require("lspconfig")
+      require("lspconfig")
       local blink = require("blink.cmp")
-
-      vim.diagnostic.config({
-        virtual_text = { prefix = "●" },
-        float = { border = "rounded" },
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = "✘",
-            [vim.diagnostic.severity.WARN] = "▲",
-            [vim.diagnostic.severity.HINT] = "⚑",
-            [vim.diagnostic.severity.INFO] = "»",
-          },
-        },
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
-      })
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
-        callback = function(ev)
-          local client = vim.lsp.get_client_by_id(ev.data.client_id)
-          local function map(mode, keys, func, desc)
-            vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
-          end
-
-          -- Standard Navigation
-          map("n", "gd", function()
-            Snacks.picker.lsp_definitions()
-          end, "Goto Definition")
-          map("n", "gr", function()
-            Snacks.picker.lsp_references()
-          end, "Goto References")
-
-          -- Documentation
-          map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-          map("n", "<leader>k", vim.lsp.buf.signature_help, "Signature Help")
-
-          -- Actions
-          map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-          map("n", "<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
-
-          -- Highlight symbol under cursor (if server supports it)
-          if client and client.server_capabilities.documentHighlightProvider then
-            local highlight_group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = false })
-            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-              buffer = ev.buf,
-              group = highlight_group,
-              callback = vim.lsp.buf.document_highlight,
-            })
-            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-              buffer = ev.buf,
-              group = highlight_group,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
-      })
 
       local capabilities = blink.get_lsp_capabilities()
 
-      lspconfig.basedpyright.setup({
-        capabilities = capabilities,
+      -- Neovim 0.11 native LSP integration
+      local function enable_lsp(server, opts)
+        opts = opts or {}
+        opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities or {}, capabilities)
+
+        -- Override nvim-lspconfig defaults dynamically
+        vim.lsp.config[server] = vim.tbl_deep_extend("force", vim.lsp.config[server] or {}, opts)
+        vim.lsp.enable(server)
+      end
+
+      enable_lsp("basedpyright", {
         settings = {
           basedpyright = {
             disableOrganizeImports = true,
             analysis = {
-              typeCheckingMode = "standard", -- Can be "off", "basic", "standard", "strict", "all"
+              typeCheckingMode = "standard",
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
-              diagnosticMode = "workspace",
+              diagnosticMode = "openFilesOnly",
+              autoImportCompletions = false,
             },
           },
         },
       })
 
-      -- Python: Ruff (Linting & Formatting)
-      lspconfig.ruff.setup({
-        capabilities = capabilities,
+      enable_lsp("ruff", {
         on_attach = function(client, _)
           client.server_capabilities.hoverProvider = false
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
         end,
       })
 
-      -- TypeScript / JavaScript
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        init_options = { hostInfo = "neovim" },
+      enable_lsp("vtsls", {
+        on_attach = function(client, _)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+        settings = {
+          typescript = {
+            inlayHints = {
+              parameterNames = { enabled = "literals" },
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+            },
+          },
+        },
       })
 
-      lspconfig.eslint.setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
+      enable_lsp("eslint", {
+        on_attach = function(client, _)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
         end,
       })
 
-      -- Rust
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
+      enable_lsp("rust_analyzer", {
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = { command = "clippy" },
@@ -118,9 +79,7 @@ return {
         },
       })
 
-      -- JSON (with SchemaStore)
-      lspconfig.jsonls.setup({
-        capabilities = capabilities,
+      enable_lsp("jsonls", {
         settings = {
           json = {
             schemas = require("schemastore").json.schemas(),
@@ -129,39 +88,31 @@ return {
         },
       })
 
-      -- YAML (with SchemaStore)
-      lspconfig.yamlls.setup({
-        capabilities = capabilities,
+      enable_lsp("yamlls", {
         settings = {
           yaml = {
-            schemaStore = {
-              enable = false, -- Disable built-in, use schemastore plugin
-              url = "",
-            },
+            schemaStore = { enable = false, url = "" },
             schemas = require("schemastore").yaml.schemas(),
           },
         },
       })
 
-      -- Lua
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+      enable_lsp("lua_ls", {
         settings = {
           Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            completion = {
-              callSnippet = "Replace",
+            diagnostics = {
+              globals = { "vim" },
             },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
           },
         },
       })
-
-      -- Docker
-      lspconfig.dockerls.setup({ capabilities = capabilities })
-
-      -- Markdown
-      lspconfig.marksman.setup({ capabilities = capabilities })
+      enable_lsp("dockerls")
+      enable_lsp("marksman")
     end,
   },
 }
