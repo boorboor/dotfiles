@@ -7,6 +7,7 @@ vim.g.loaded_ruby_provider = 0
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+require("config.lsp")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
