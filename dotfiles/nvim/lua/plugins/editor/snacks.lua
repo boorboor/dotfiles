@@ -30,8 +30,6 @@ return {
             },
             dev = {
               "~/Codes/",
-              "~/codes/matching-platform/", -- mono-repo
-              "~/codes/gasp-irt/",
             },
             projects = {
               "~/.config/",
@@ -55,7 +53,7 @@ return {
       {
         "<leader>o",
         function()
-          Snacks.picker.smart()
+          Snacks.picker.smart({ filter = { cwd = true } })
         end,
         desc = "Smart Find Files",
       },
@@ -98,7 +96,12 @@ return {
       {
         "<leader>e",
         function()
-          Snacks.picker.explorer()
+          local pickers = Snacks.picker.get({ source = "explorer" })
+          if #pickers > 0 then
+            pickers[1]:focus()
+          else
+            Snacks.picker.explorer()
+          end
         end,
         desc = "File Explorer",
       },

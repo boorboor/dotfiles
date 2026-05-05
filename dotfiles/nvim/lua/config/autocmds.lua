@@ -39,5 +39,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Actions
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
     map("n", "<leader>cr", vim.lsp.buf.rename, "Rename Symbol")
+    map("n", "<leader>cd", function()
+      vim.diagnostic.open_float({ scope = "cursor", border = "rounded" })
+    end, "Show Diagnostic Float")
   end,
 })
